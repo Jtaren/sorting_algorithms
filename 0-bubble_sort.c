@@ -1,35 +1,46 @@
 #include "sort.h"
 
+void swap(int *array, size_t ind_1, size_t ind_2);
 
 /**
- * bubble_sort - use bubble sort to sort an array
- * @array: integer array
- * @size: size of array
+ * bubble_sort - performs bubble sort on an array
+ * @array: array to sory (of ints)
+ * @size: size of array (as size_t)
  */
 void bubble_sort(int *array, size_t size)
 {
-	size_t i, j, swap;
-	int tmp;
+	BOOL sorted = FALSE;
+	size_t i, sorted_i = size - 1;
 
-	if (!array || size < 2)
+	if (!array || size <= 1)
 		return;
-/* I loop twice through the array to make pairwise comparisons*/
-/*I stop when I do not need to swap*/
-	for (i = 0; i < size - 1; ++i)
+	while (!sorted)
 	{
-		swap = 0;
-		for (j = 1; j < size - i; ++j)
+		sorted = TRUE;
+		for (i = 0; i < sorted_i; i++)
 		{
-			if (array[j - 1] > array[j])
+			if (array[i] > array[i + 1])
 			{
-				tmp = array[j - 1];
-				array[j - 1] = array[j];
-				array[j] = tmp;
+				swap(array, i, i + 1);
+				sorted = FALSE;
 				print_array(array, size);
-				++swap;
 			}
 		}
-		if (!swap)
-			break;
+		sorted_i--;
 	}
+}
+
+/**
+ * swap - swaps array index elements
+ * @array: array to swap in
+ * @ind_1: index 1 to swap with index 2
+ * @ind_2: index 2 to swap with index 1
+ */
+void swap(int *array, size_t ind_1, size_t ind_2)
+{
+	int temp;
+
+	temp = array[ind_1];
+	array[ind_1] = array[ind_2];
+	array[ind_2] = temp;
 }
