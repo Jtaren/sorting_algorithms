@@ -19,4 +19,5 @@ TASKS
 7. Merge sort
 8. Heap sort
 9. Radix sort
-10. Bitonic sort 
+10. Bitonic sort
+11 
