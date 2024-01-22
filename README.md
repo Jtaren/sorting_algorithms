@@ -17,3 +17,4 @@ TASKS
 5. Cocktail shaker sort
 6. Counting sort
 7. Merge sort
+8
