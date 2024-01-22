@@ -20,4 +20,5 @@ TASKS
 8. Heap sort
 9. Radix sort
 10. Bitonic sort
-11. Quick sort - Hoare Partition scheme 
+11. Quick sort - Hoare Partition scheme
+12 
