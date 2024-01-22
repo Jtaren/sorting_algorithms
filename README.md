@@ -20,4 +20,4 @@ TASKS
 8. Heap sort
 9. Radix sort
 10. Bitonic sort
-11. Quick 
+11. Quick sort 
