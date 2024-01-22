@@ -1,101 +1,111 @@
 #include "sort.h"
 
 /**
- * swap_tail - function to swap list
- *@list: list to be swapped
- *@head: head of list
- *@tail: tail of list
+ * swap_list - swaps the elements of the list
+ * @head1: first pointer to the list
+ * @head2: second pointer to the list
+ * @n: n is 0 for increase, n is 1 for decrease
  *
- * Return - void
+ * Return: no return
  */
-void swap_tail(listint_t **list, listint_t **head, listint_t **tail)
+void swap_list(listint_t **head1, listint_t **head2, int n)
 {
-	listint_t *temp = (*tail)->next;
+	listint_t *h, *tmp;
 
-	if ((*tail)->prev != NULL)
-	{
-		(*tail)->prev->next = temp;
-	}
+	h = *head1;
+	tmp = *head2;
+
+	h->next = tmp->next;
+	tmp->prev = h->prev;
+
+	if (tmp->next)
+		tmp->next->prev = h;
+
+	if (h->prev)
+		h->prev->next = tmp;
+
+	h->prev = tmp;
+	tmp->next = h;
+
+	if (n == 0)
+		*head1 = tmp;
 	else
-		*list = temp;
-	temp->prev = (*tail)->prev;
-	(*tail)->next = temp->next;
-	if (temp->next != NULL)
-	{
-		temp->next->prev = *tail;
-	}
-	else
-		*head = *tail;
-	(*tail)->prev = temp;
-	temp->next = *tail;
-	*tail = temp;
+		*head2 = h;
 }
 
 /**
- * swap_head - function to swap head of linked list
- *@list: doubly linked list to be sorted
- *@tail: tail of double linked list
- *@head: head of double linked list
- * Return - void
+ * increase_sort - move the bigger numbers to the end
+ * @head: pointer to the bigger number
+ * @limit: limit of the list
+ * @list: list of the doubly linked list
+ *
+ * Return: no return
  */
-void swap_head(listint_t **list, listint_t **tail, listint_t **head)
+void increase_sort(listint_t **head, listint_t **limit, listint_t **list)
 {
-	listint_t *temp = (*head)->prev;
+	listint_t *h;
 
-	if ((*head)->prev != NULL)
-		(*head)->next->prev = temp;
-	else
-		*tail = temp;
-	temp->next = (*head)->next;
-	(*head)->prev = temp->prev;
-	if (temp->prev != NULL)
+	for (h = *head; h != *limit && h->next != *limit; h = h->next)
 	{
-		temp->prev->next = *head;
+		if (h->n > h->next->n)
+		{
+			swap_list(&h, &(h->next), 0);
+			if (h->prev == NULL)
+				*list = h;
+			print_list(*list);
+		}
 	}
-	else
-		*list = *head;
-	(*head)->next = temp;
-	temp->prev = *head;
-	*head = temp;
+	*limit = h;
+	*head = h;
 }
 
 /**
- * cocktail_sort_list - function to sort doubly linked list w/ cocktail sort
- *@list: list to be sorted
- * Return - void
+ * decrease_sort - moves the smaller numbers to the start
+ * @head: pointer to the smaller number
+ * @limit: limit of the list
+ * @list: list of the doubly linked list
+ *
+ * Return: no return
+ */
+void decrease_sort(listint_t **head, listint_t **limit, listint_t **list)
+{
+	listint_t *h;
+
+	for (h = *head; h != *limit && h->prev != *limit; h = h->prev)
+	{
+		if (h->n < h->prev->n)
+		{
+			swap_list(&(h->prev), &h, 1);
+			if (h->prev->prev == NULL)
+				*list = h->prev;
+			print_list(*list);
+		}
+	}
+	*limit = h;
+	*head = h;
+}
+
+/**
+ * cocktail_sort_list - sorts a doubly linked list of integers in ascending
+ * @list: list of the doubly linked list
+ *
+ * Return: void has no return value
  */
 void cocktail_sort_list(listint_t **list)
 {
-	bool booln = false;
-	listint_t *head;
-	listint_t *tail;
+	listint_t *limit1, *limit2, *head;
 
-	if (list == NULL || *list == NULL || (*list)->next == NULL)
+	if (list == NULL)
 		return;
-	for (tail = *list; tail->next != NULL;)
-	{
-		tail = tail->next;
-	}
-	while (booln == false)
-	{
-		booln = true;
-		for (head = *list; head != tail; head = head->next)
-		{
-			if (head->n > head->next->n)
-			{
-				swap_tail(list, &tail, &head);
-				print_list((const listint_t *) *list);
-				booln = false;
-			}
-		}
-		for (head = head->prev; head != *list; head = head->prev)
-		{
-			if (head->n < head->prev->n)
-			{
-				swap_head(list, &tail, &head);
-				print_list((const listint_t *) *list);
-				booln = false;
-			}
-		}
-	}
+
+	if (*list == NULL)
+		return;
+
+	limit1 = limit2 = NULL;
+	head = *list;
+
+	do {
+		increase_sort(&head, &limit1, list);
+		decrease_sort(&head, &limit2, list);
+	} while (limit1 != limit2);
 }
