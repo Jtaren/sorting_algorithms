@@ -15,3 +15,4 @@ TASKS
 3. Quick sort
 4. Shell sort
 5. Cocktail shaker sort
+6. Counting sort
