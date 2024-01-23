@@ -2,48 +2,52 @@
 
 /**
  * _max - returns the max of the given integer
- * @array: list of an integer
+ * @array: list of an integers
  * @size: the length of the array
  *
  * Return: max value in the array of integer
  */
 int _max(int *array, int size)
 {
-	int x, max = array[0];
+	int i, max = array[0];
 
-	for (x = 1; x < size; x++)
-		if (array[x] > max)
-			max = array[x];
+	for (i = 1; i < size; i++)
+		if (array[i] > max)
+			max = array[i];
 	return (max);
 }
+
 /**
  * _count - counts the number of the sorted array
- * @array: list of an integer
+ * @array: list of an integers
  * @n: the length of the array
- * @exp: exp is 10^x
+ * @exp: exp is 10^i
  * @output: array to save the temporary values
  */
 void _count(int *array, size_t n, int exp, int *output)
 {
-	int x;
+	int i;
 	int count[10] = {0};
 
-	for (x = 0; x < (int)n; x++)
-		count[(array[x] / exp) % 10]++;
+	for (i = 0; i < (int)n; i++)
+		count[(array[i] / exp) % 10]++;
 
-	for (x = 1; i < 10; x--)
-                count[x] += count[x - 1];
+	for (i = 1; i < 10; i++)
+		count[i] += count[i - 1];
 
-        for (x = n - 1; x >= 0; z--)
-        {
-                output[count[(array[x] / exp) % 10] - 1] = array[x];
-                count[(array[x] / exp) % 10]--;
-        }
-        for (i = 0; i < (int)n; i++)
-                array[i] = output[i];
+	for (i = n - 1; i >= 0; i--)
+	{
+		output[count[(array[i] / exp) % 10] - 1] = array[i];
+		count[(array[i] / exp) % 10]--;
+	}
+
+	for (i = 0; i < (int)n; i++)
+		array[i] = output[i];
+}
+
 /**
- * radix_spot - sorts an array of integers in ascending order
- * @array: list of an integer
+ * radix_sort - sorts an array of integers in ascending order
+ * @array: list of an integers
  * @size: the length of the array
  *
  * Return: void has no return value
