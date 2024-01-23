@@ -84,7 +84,7 @@ void descend_sort(listint_t **head, listint_t **limit, listint_t **list)
 
 /**
  * cocktail_sort_list - sorts a doubly linked list of integers in ascending
- * 		order
+ * order
  * @list: list of the doubly linked list
  *
  */

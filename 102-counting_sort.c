@@ -22,7 +22,7 @@ int max_get(int *array, int size)
 
 /**
  * counting_sort - Sort an int array from lowest to highest by
- * 		the counting sort algorithm.
+ * the counting sort algorithm.
  * @array: An int array.
  * @size: The array size.
  *

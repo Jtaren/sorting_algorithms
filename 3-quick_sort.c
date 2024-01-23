@@ -20,8 +20,8 @@ void swap_ints(int *a, int *b)
 }
 
 /**
- * part_lomuto - Arrange a portion of an array of integers using the Lomuto partition
- * 		scheme, with the last element serving as the pivot.
+ * part_lomuto - Arrange a portion of an array of integers using the Lomuto
+ * partition scheme, with the last element serving as the pivot.
  * @array: The int array.
  * @size: The array size.
  * @left: First index of the subset to order.
@@ -79,12 +79,12 @@ void sort_lomuto(int *array, size_t size, int left, int right)
 
 /**
  * quick_sort - Sort an int array from low to high through the
- * 		quicksort algorithm.
+ * quicksort algorithm.
  * @array: An int array.
  * @size: The array size.
  *
  * Description: Employs the Lomuto partition scheme and displays the array
- * 		following every interchange of two elements.
+ * following every interchange of two elements.
  */
 void quick_sort(int *array, size_t size)
 {

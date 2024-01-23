@@ -16,7 +16,7 @@ void swap_ints(int *a, int *b)
 
 /**
  * selection_sort - Sort an int array of integers from lowest
- * 		highest through selection sort
+ * highest through selection sort
  * @array: An int array
  * @size: Array size
  *

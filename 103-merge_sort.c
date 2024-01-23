@@ -59,7 +59,7 @@ void recursive_merge_sort(int *sub_arr, int *buff, size_t right, size_t left)
 
 /**
  * merge_sort - Sort an int array from low to high through
- * 		the merge sort algo.
+ * the merge sort algo.
  * @array: An int array.
  * @size: The array size.
  *
