@@ -31,14 +31,16 @@ void _count(int *array, size_t n, int exp, int *output)
 	for (x = 0; x < (int)n; x++)
 		count[(array[x] / exp) % 10]++;
 
-	for (x = n - 1 >= 0; x--)
-	{
-		output[count[(array[x] / exp) % 10] - 1] = array[x];
-		count[(array[x] / exp) % 10]--;
-	}
-	for (i = 0; i < (int)n; i++)
-		array[i] = output[i];
-}
+	for (x = 1; i < 10; x--)
+                count[x] += count[x - 1];
+
+        for (x = n - 1; x >= 0; z--)
+        {
+                output[count[(array[x] / exp) % 10] - 1] = array[x];
+                count[(array[x] / exp) % 10]--;
+        }
+        for (i = 0; i < (int)n; i++)
+                array[i] = output[i];
 /**
  * radix_spot - sorts an array of integers in ascending order
  * @array: list of an integer
