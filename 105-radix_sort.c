@@ -9,11 +9,11 @@
  */
 int _max(int *array, int size)
 {
-	int j, max = array[0];
+	int i, max = array[0];
 
-	for (j = 1; i < size; j++)
-		if (array[j] > max)
-			max = array[j];
+	for (i = 1; i < size; i++)
+		if (array[i] > max)
+			max = array[i];
 	return (max);
 }
 
@@ -21,28 +21,28 @@ int _max(int *array, int size)
  * _count - counts the number of the sorted array
  * @array: list of an integers
  * @n: the length of the array
- * @exp: exp is 10^j
+ * @exp: exp is 10^i
  * @output: array to save the temporary values
  */
 void _count(int *array, size_t n, int exp, int *output)
 {
-	int j;
+	int i;
 	int count[10] = {0};
 
-	for (j = 0; j < (int)n; j++)
-		count[(array[j] / exp) % 10]++;
+	for (i = 0; i < (int)n; i++)
+		count[(array[i] / exp) % 10]++;
 
-	for (j = 1; j < 10; j++)
+	for (i = 1; i < 10; i++)
 		count[i] += count[i - 1];
 
-	for (j = n - 1; j >= 0; j--)
+	for (i = n - 1; i >= 0; i--)
 	{
-		output[count[(array[j] / exp) % 10] - 1] = array[j];
-		count[(array[j] / exp) % 10]--;
+		output[count[(array[i] / exp) % 10] - 1] = array[i];
+		count[(array[i] / exp) % 10]--;
 	}
 
-	for (j = 0; j < (int)n; j++)
-		array[j] = output[j];
+	for (i = 0; i < (int)n; i++)
+		array[i] = output[i];
 }
 
 /**
