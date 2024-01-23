@@ -42,7 +42,7 @@ void binary_heap(int *array, size_t size, size_t base, size_t root)
 	{
 		swap_ints(array + root, array + large);
 		print_array(array, size);
-		max_heapify(array, size, base, large);
+		binary_heap(array, size, base, large);
 	}
 }
 
@@ -61,7 +61,7 @@ void heap_sort(int *array, size_t size)
 		return;
 
 	for (i = (size / 2) - 1; i >= 0; i--)
-		max_heapify(array, size, size, i);
+		binary_heap(array, size, size, i);
 
 	for (i = size - 1; i > 0; i--)
 	{
