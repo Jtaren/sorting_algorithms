@@ -2,9 +2,9 @@
 
 /**
  * swap_nodes - Swap two nodes in a listint_t doubly-linked list.
- * @h: A pointer to the head of the doubly-linked list.
+ * @h: A doubly-linked list' head pointer.
  * @n1: A pointer to the first node to swap.
- * @n2: The second node to swap.
+ * @n2: The second node to be swapped.
  */
 void swap_nodes(listint_t **h, listint_t **n1, listint_t *n2)
 {
@@ -24,24 +24,23 @@ void swap_nodes(listint_t **h, listint_t **n1, listint_t *n2)
 /**
  * insertion_sort_list - Sorts a doubly linked list of integers
  *                       using the insertion sort algorithm.
- * @list: A pointer to the head of a doubly-linked list of integers.
+ * @list: A doubly-linked list of integers head pointer.
  *
- * Description: Prints the list after each swap.
  */
 void insertion_sort_list(listint_t **list)
 {
-	listint_t *iter, *insert, *tmp;
+	listint_t *iterat, *algo, *tmp;
 
 	if (list == NULL || *list == NULL || (*list)->next == NULL)
 		return;
 
-	for (iter = (*list)->next; iter != NULL; iter = tmp)
+	for (iterat = (*list)->next; iterat != NULL; iterat = tmp)
 	{
-		tmp = iter->next;
-		insert = iter->prev;
-		while (insert != NULL && iter->n < insert->n)
+		tmp = iterat->next;
+		algo = iterat->prev;
+		while (algo != NULL && iterat->n < algo->n)
 		{
-			swap_nodes(list, &insert, iter);
+			swap_nodes(list, &algo, iterat);
 			print_list((const listint_t *)*list);
 		}
 	}
